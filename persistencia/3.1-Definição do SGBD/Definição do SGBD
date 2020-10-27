@@ -1,0 +1,7 @@
+O SGBD escolhido para a parte do sistema que lida com usuarios e empresas( entidades monitoradoras) é o postgresSQL.
+Motivação:
+1- Precisava de um banco de dados relacional para pesquisas e organização dos dados dos meus modelos de maneira simples
+2- Pretendo dar deploy no heroku , que aceita apenas esse banco  e nao o SQLlite por exemplo.
+3- Interage muito bem com o O.R.M do rails , que é o framework escolhido para o deselvimento.
+4- Possui simples instalação e interação com suas funções
+5- tenho algum conhecimento previo sobre esse SGBD.
