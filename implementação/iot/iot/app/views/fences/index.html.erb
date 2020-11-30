@@ -1,0 +1,77 @@
+<p id="notice"><%= notice %></p>
+<head>
+  <meta http-equiv="refresh" content="60">
+</head>
+<center>
+  <%= link_to 'Criar cerca', new_fence_path ,class:"btn btn-primary"%>
+</center>
+<hr>
+<div class="card">
+  <div class="card-header">
+  <center>
+    Cercas monitoradas
+  </center>
+  </div>
+  <div class="card-body">
+    <div class="row">
+        <% @fences.each do |fence| %>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= fence.name %></h5>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>STATUS</th>
+                    <th>Posição</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= fence.status %></td>
+                    <td><%= fence.position %></td>
+                  </tr>
+                </tbody>
+                <thead>
+                  <tr>
+                    <th>
+                      <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning " data-toggle="modal" data-target=<%="#edit"+fence.id.to_s%>>
+                      Editar
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id=<%="edit"+fence.id.to_s%> tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Editar cerca</h4>
+                          </div>
+                          <div class="modal-body">
+                          <%= render 'form', fence: fence %>
+                          </div>
+                          <div class="modal-footer">
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </th>
+                    <th><%= link_to 'Apagar', fence, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-danger"%></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= link_to 'Exibir logs', fence ,class:"btn btn-success "%></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+        <% end %>
+
+    </div>
+  </div>
+</div>

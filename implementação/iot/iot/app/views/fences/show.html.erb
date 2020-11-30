@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @fence.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @fence.status %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @fence.position %>
+</p>
+
+<%= link_to 'Edit', edit_fence_path(@fence) %> |
+<%= link_to 'Back', fences_path %>
+
+
+<hr>
+<table  class="table table-striped">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>hora</th>
+      <th>status do dado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @logs.each do |log| %>
+      <tr>
+        <td><%= log.status %></td>
+        <td><%= log.created_at %></td>
+        <td><%= log.enviado %></td>
+        <td><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

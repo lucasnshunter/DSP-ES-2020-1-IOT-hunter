@@ -1,0 +1,2 @@
+module FencesHelper
+end
