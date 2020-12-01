@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  status: MyString
+  hora: 2020-11-30 22:37:08
+  position: MyString
+  cerca_id: MyString
+  farm: one
+
+two:
+  name: MyString
+  status: MyString
+  hora: 2020-11-30 22:37:08
+  position: MyString
+  cerca_id: MyString
+  farm: two

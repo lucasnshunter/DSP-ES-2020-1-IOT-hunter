@@ -6,6 +6,8 @@ class FencesController < ApplicationController
   def index
     @fences = Fence.all
     registra_log
+    submete_logs
+
   end
 
   # GET /fences/1
@@ -75,8 +77,7 @@ class FencesController < ApplicationController
       params.require(:fence).permit(:name, :status, :position)
     end
     def registra_log
-      @cercas=Fence.all
-
+      @fences=Fence.all
       @fences.each do |fence|
         log=Log.new
         log.status=fence.status
@@ -84,6 +85,30 @@ class FencesController < ApplicationController
         log.enviado= false
         log.save
       end
-
     end
+    def submete_logs
+      fences=Fence.all
+      fences.each do |fence|
+          logs=Log.where(fence_id:fence.id)
+          logs.each do |log|
+            if log.enviado == false
+              data= gerar_data log
+              post_log  data
+              log.enviado=true
+              log.save
+            end
+          end
+      end
+    end
+    def gerar_data log
+      data = { status:log.status, fence_id: log.fence_id ,hora:log.created_at}
+    end
+    def post_log data
+      require 'net/http'
+      puts "rodou tudo"
+      uri = URI.parse('http://localhost:3000/events')
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.post(uri, data.to_json)
+    end
+
 end
