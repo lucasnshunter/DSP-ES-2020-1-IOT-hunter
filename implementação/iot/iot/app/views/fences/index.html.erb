@@ -1,4 +1,12 @@
+
 <p id="notice"><%= notice %></p>
+<center>
+  <img src='' id="icone" width="60px">
+  <br/>
+  <strong>Goiânia</strong><br/>
+  <span id="temperatura"></span><br/>
+  <span id="clima"></span>
+</center>
 <head>
   <meta http-equiv="refresh" content="60">
 </head>
@@ -75,3 +83,17 @@
     </div>
   </div>
 </div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+	$.get( "http://apidev.accuweather.com/currentconditions/v1/36728.json?language=pt&apikey=hoArfRosT1215", function(data) {
+	$('#temperatura').html(data[0].Temperature.Metric.Value);
+	$('#clima').html(data[0].WeatherText);
+	$('#icone').attr('src','https://vortex.accuweather.com/adc2010/images/slate/icons/' + data[0].WeatherIcon + '.svg');
+	});
+});
+</script>

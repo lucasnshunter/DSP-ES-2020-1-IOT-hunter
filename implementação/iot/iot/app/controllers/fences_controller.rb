@@ -93,7 +93,7 @@ class FencesController < ApplicationController
           logs.each do |log|
             if log.enviado == false
               data= gerar_data log
-              post_log  data
+              #post_log  data
               log.enviado=true
               log.save
             end
@@ -104,9 +104,10 @@ class FencesController < ApplicationController
       data = { status:log.status, fence_id: log.fence_id ,hora:log.created_at}
     end
     def post_log data
+      data = { title: "teste loko", bodye: 'deu certo' }
       require 'net/http'
       puts "rodou tudo"
-      uri = URI.parse('http://localhost:3000/events')
+      uri = URI.parse('http://localhost:3001//api/v1/articles')
       http = Net::HTTP.new(uri.host, uri.port)
       http.post(uri, data.to_json)
     end
